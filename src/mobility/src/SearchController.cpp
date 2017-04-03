@@ -1,7 +1,10 @@
 #include "SearchController.h"
 
+int SearchController::counter = 1;
+int SearchController::sign = 1;
+
 SearchController::SearchController() {
-  rng = new random_numbers::RandomNumberGenerator();
+
 }
 
 /**
@@ -9,14 +12,26 @@ SearchController::SearchController() {
  */
 geometry_msgs::Pose2D SearchController::search(geometry_msgs::Pose2D currentLocation) {
   geometry_msgs::Pose2D goalLocation;
+int xx=0;
+int yy=0;
+
+
+
+  if (counter%2==0)
+	{xx=counter;}
+else {
+	yy=counter;}
 
   //select new heading from Gaussian distribution around current heading
-  goalLocation.theta = rng->gaussian(currentLocation.theta, 0.25);
+ 
 
   //select new position 50 cm from current location
-  goalLocation.x = currentLocation.x + (0.5 * cos(goalLocation.theta));
-  goalLocation.y = currentLocation.y + (0.5 * sin(goalLocation.theta));
 
+  goalLocation.x = currentLocation.x + xx;
+  goalLocation.y = currentLocation.y + yy;
+if (counter%2==0)
+	{sign=sign*-1;}
+counter++;
   return goalLocation;
 }
 
