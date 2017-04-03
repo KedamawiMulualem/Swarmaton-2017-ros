@@ -13,7 +13,8 @@ class SearchController {
   public:
 
     SearchController();
-
+	static int counter;
+	static int sign;
     // performs search pattern
     geometry_msgs::Pose2D search(geometry_msgs::Pose2D currentLocation);
 
@@ -23,6 +24,8 @@ class SearchController {
   private:
 
     random_numbers::RandomNumberGenerator* rng;
+	
+
 };
 
 #endif /* SEARCH_CONTROLLER */
